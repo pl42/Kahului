@@ -3,7 +3,7 @@ import org.apache.log4j.Logger;
 import utils.CalcUtils;
 
 public class Main {
-	final static Logger logger = Logger.getLogger(Kahului.class);
+	final static Logger logger = Logger.getLogger(Main.class);
 
 	public static void main(String[] args) {
 		logger.info("Starting KAHULUI version 1.0.2 ...");
@@ -15,8 +15,6 @@ public class Main {
 			System.exit(-2);
 			logger.error("Arguments cannot be empty");
 		}
-		logger.error("Starting KAHULUI version 1.0.2 ...");
-		//Kahului.playSweetWater();
 		for (; ; ) {
 			Kahului dolores = new Kahului(args[0], args[1]);
 			dolores.gatherMindData();

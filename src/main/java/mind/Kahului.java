@@ -33,7 +33,7 @@ import static java.lang.Math.max;
 public class Kahului {
 
 	final static Logger logger = Logger.getLogger(Kahului.class);
-	private static Double percentageRatio = 1.0001;
+	private static Double percentageRatio = 1.00015;
 	private static int MAX_TRADES_PER_24HOURS = 10;
 	private static CandlestickInterval[] intervalList = {
 			CandlestickInterval.ONE_MINUTE};

@@ -10,12 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class KahuluiController {
+  private final Kahului kahului;
+
   @Autowired
-  private Kahului dolores;
+  public KahuluiController(Kahului kahului) {
+    this.kahului = kahului;
+  }
 
   @RequestMapping(path = "/totalBalance", method = RequestMethod.GET)
   public ResponseEntity getTotalBalance() {
+    return new ResponseEntity(kahului.getTotalBalance(), HttpStatus.OK);
+  }
 
-    return new ResponseEntity(dolores.getTotalBalance(), HttpStatus.OK);
+  @RequestMapping(path = "/shutdown", method = RequestMethod.GET)
+  public void shutdown() {
+    System.exit(-1);
   }
 }

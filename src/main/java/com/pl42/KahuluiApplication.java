@@ -19,7 +19,6 @@ public class KahuluiApplication {
       logger.error("Not enough arguments have been given");
       System.exit(-1);
     }
-    logger.info("Starting Kahului trading...");
     for (;;) {
       Kahului dolores = context.getBean(Kahului.class);
       dolores.setBinanceCreds(args[0], args[1]);

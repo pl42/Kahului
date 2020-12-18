@@ -10,7 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class KahuluiApplication {
-  private final static Logger logger = Logger.getLogger(KahuluiApplication.class);
+  private static final Logger logger = Logger.getLogger(KahuluiApplication.class);
 
   public static void main(String[] args) {
     ConfigurableApplicationContext context = SpringApplication.run(KahuluiApplication.class, args);
@@ -19,7 +19,7 @@ public class KahuluiApplication {
       logger.error("Not enough arguments have been given");
       System.exit(-1);
     }
-    for (;;) {
+    for (; ; ) {
       Kahului dolores = context.getBean(Kahului.class);
       dolores.setBinanceCreds(args[0], args[1]);
       dolores.setTwitterCreds(args[2], args[3], args[4], args[5]);

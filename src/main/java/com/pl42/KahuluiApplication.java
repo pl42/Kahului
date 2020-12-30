@@ -25,6 +25,7 @@ public class KahuluiApplication {
       dolores.gatherMindData();
       dolores.predictAndTrade();
       dolores.printBalances();
+      dolores.reset();
       new CalcUtils().sleeper(25000);
     }
   }

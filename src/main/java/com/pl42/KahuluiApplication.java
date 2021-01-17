@@ -13,7 +13,7 @@ public class KahuluiApplication {
 
   public static void main(String[] args) {
     ConfigurableApplicationContext context = SpringApplication.run(KahuluiApplication.class, args);
-    logger.info("Starting KAHULUI (v6.2.5) ...");
+    logger.info("Starting KAHULUI (v6.2.7) ...");
     if (args.length < 6) {
       logger.error("Not enough arguments have been given");
       System.exit(-1);

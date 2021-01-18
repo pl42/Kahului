@@ -60,7 +60,13 @@ public class KahuluiController {
   @GetMapping(path = PATH_STATUS)
   public ResponseEntity getState() {
     logger.trace(PATH_STATUS + RESPONSE_SUFFIX);
-    String response = "Have you ever seen anything so full of splendor?";
+    String response = "=====  >>>>>  KAHULUI  <<<<<  =====<br>";
+    if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###<br>";
+    response += "<br>Status  :::  " + kahului.getCurrentStateString();
+    response += "<br><br>--- Prices ---";
+    response += "<br>Current price: $" + kahului.getCurrentPrice();
+    response += "<br>Current target: $" + kahului.getCurrentTargetPrice();
+    if (kahului.currentState) response += "<br>Buy back price: $" + kahului.getCurrentBuyBackPrice();
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 

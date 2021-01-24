@@ -33,13 +33,13 @@ public class KahuluiController {
   @GetMapping(path = PATH_BALANCE)
   public ResponseEntity getTotalBTC() {
     logger.trace(PATH_BALANCE + RESPONSE_SUFFIX);
-    return new ResponseEntity<>(kahului.getTotalBalance(), HttpStatus.OK);
+    return new ResponseEntity<>(kahului.getCurrentBalance(), HttpStatus.OK);
   }
 
   @GetMapping(path = PATH_PROFIT)
   public ResponseEntity getTotalProfit() {
     logger.trace(PATH_PROFIT + RESPONSE_SUFFIX);
-    return new ResponseEntity<>(kahului.getTotalProfit(), HttpStatus.OK);
+    return new ResponseEntity<>(kahului.getCurrentProfit(), HttpStatus.OK);
   }
 
   @GetMapping(path = PATH_SHUTDOWN, params = {"pass"})
@@ -60,13 +60,19 @@ public class KahuluiController {
   @GetMapping(path = PATH_STATUS)
   public ResponseEntity getState() {
     logger.trace(PATH_STATUS + RESPONSE_SUFFIX);
-    String response = "=====  >>>>>  KAHULUI  <<<<<  =====<br>";
+    String response = "=====  >>>>>  KAHULUI (v" + kahului.getVersion() + ") <<<<<  =====<br>";
     if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###<br>";
     response += "<br>Status  :::  " + kahului.getCurrentStateString();
-    response += "<br><br>--- Prices ---";
-    response += "<br>Current price: $" + kahului.getCurrentPrice();
-    response += "<br>Current target: $" + kahului.getCurrentTargetPrice();
-    if (kahului.currentState) response += "<br>Buy back price: $" + kahului.getCurrentBuyBackPrice();
+    response += "<br><br>--- Engine data ---";
+    response += "<br>BTC Price: $" + kahului.getCurrentPrice();
+    response += "<br>Target: $" + kahului.getCurrentTargetPrice();
+    response += "<br>Buy back: $" + kahului.getCurrentBuyBackPrice();
+    response += "<br><br>--- Status report ---";
+    if (!kahului.currentState) response += "<br>There is an open buy back order at: $" + kahului.getOpenBuyBackPrice()
+            + " for " + kahului.getOpenBuyBackAmt() + " BTC";
+    response += "<br>Initial investment: " + kahului.getInitialInvestment() + " BTC";
+    response += "<br>Current portfolio value: " + kahului.getCurrentBalance() + " BTC";
+    response += "<br>Current profit: " + kahului.getCurrentProfit() + "%";
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 

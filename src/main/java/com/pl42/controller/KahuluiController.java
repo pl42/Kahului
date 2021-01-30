@@ -68,6 +68,7 @@ public class KahuluiController {
     response += "<br>Target: $" + kahului.getCurrentTargetPrice();
     response += "<br>Buy back: $" + kahului.getCurrentBuyBackPrice();
     response += "<br><br>--- Status report ---";
+    response += "<br>Sell confidence: " + kahului.getCurrentSellConfidence() + "%";
     if (!kahului.currentState)
       response +=
           "<br>There is an open buy back order at: $"
@@ -76,8 +77,8 @@ public class KahuluiController {
               + kahului.getOpenBuyBackAmt()
               + " BTC";
     response += "<br>Initial investment: " + kahului.getInitialInvestment() + " BTC";
-    response += "<br>Current portfolio value: " + kahului.getCurrentBalance() + " BTC";
-    response += "<br>Current profit: " + kahului.getCurrentProfit() + "%";
+    response += "<br>Portfolio value: " + kahului.getCurrentBalance() + " BTC";
+    response += "<br>Profit: " + kahului.getCurrentProfit() + "%";
     return new ResponseEntity<>(
         "<html>\n"
             + "<head>\n"

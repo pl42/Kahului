@@ -79,7 +79,7 @@ public class KahuluiController {
     response += "<br>Initial investment: " + kahului.getInitialInvestment() + " BTC";
     response += "<br>Portfolio value: " + kahului.getCurrentBalance() + " BTC";
     response += "<br>Profit: " + kahului.getCurrentProfit() + "%";
-    response += "<br><br>Donate:<br>14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj";
+    response += "<br><br>--- Donate ---<br>14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj";
     return new ResponseEntity<>(
         "<html>\n"
             + "<head>\n"

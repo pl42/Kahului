@@ -5,7 +5,7 @@
 
     <groupId>com.pl42</groupId>
     <artifactId>kahului</artifactId>
-    <version>6.3.10</version>
+    <version>6.4.1</version>
     <packaging>jar</packaging>
 
     <name>kahului</name>

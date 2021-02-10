@@ -61,17 +61,21 @@ public class KahuluiController {
   public ResponseEntity getState() {
     logger.trace(PATH_STATUS + RESPONSE_SUFFIX);
     String response = "=====  >>>>>  KAHULUI (v" + kahului.getVersion() + ") <<<<<  =====<br>";
-    if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###<br>";
-    response += "<br>Status  :::  " + kahului.getCurrentStateString();
-    response += "<br><br>--- Engine data ---";
+    if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###";
+    response += "<br>--- Status report ---";
+    response += "<br>Status: " + kahului.getCurrentStateString();
+    response += "<br>Profit: " + kahului.getCurrentProfit() + "%";
+    response += "<br>Portfolio value: " + kahului.getCurrentBalance() + " BTC";
+    response += "<br>Initial investment: " + kahului.getInitialInvestment() + " BTC";
+    response += "<br>Sell confidence: " + kahului.getCurrentSellConfidence() + "%";
+    response += "<br><br>--- Prices ---";
     response += "<br>BTC Price: $" + kahului.getCurrentPrice();
     response += "<br>Target: $" + kahului.getCurrentTargetPrice();
     response += "<br>Buy back: $" + kahului.getCurrentBuyBackPrice();
-    response += "<br>Sell confidence: " + kahului.getCurrentSellConfidence() + "%";
-    response += "<br><br>--- Status report ---";
-    response += "<br>Initial investment: " + kahului.getInitialInvestment() + " BTC";
-    response += "<br>Portfolio value: " + kahului.getCurrentBalance() + " BTC";
-    response += "<br>Profit: " + kahului.getCurrentProfit() + "%";
+    response += "<br><br>--- Links ---";
+    response += "<br><a href=\"https://github.com/pl42/kahului\" style=\"color:#F7931A\">Source Code</a>";
+    response += "<br><a href=\"https://twitter.com/WestworldKahului\" style=\"color:#F7931A\">Kahului's Twitter</a>";
+    response += "<br><a href=\"https://www.peggy42.cn/full.php\" style=\"color:#F7931A\">Kahului's full log</a>";
     if (!kahului.currentState) {
       Double diff = kahului.getCurrentPrice() - kahului.getOpenBuyBackPrice();
       diff = Math.round(diff * 1000.0) / 1000.0;
@@ -88,7 +92,7 @@ public class KahuluiController {
     response += "<br><br>--- Donate ---<br>";
     response +=
         "<a href=\"https://www.blockchain.com/btc/address/"
-            + "14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj\">14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj</a>";
+            + "14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj\" style=\"color:#F7931A\">14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj</a>";
     return new ResponseEntity<>(
         "<html>\n"
             + "<head>\n"

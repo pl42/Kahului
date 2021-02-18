@@ -43,8 +43,8 @@ public class KahuluiController {
   }
 
   @GetMapping(
-          path = PATH_SHUTDOWN,
-          params = {"pass"})
+      path = PATH_SHUTDOWN,
+      params = {"pass"})
   public void seppuku(@RequestParam("pass") String pass, HttpServletRequest request) {
     logger.trace(PATH_SHUTDOWN + RESPONSE_SUFFIX);
     // Verify the password provided...
@@ -77,41 +77,40 @@ public class KahuluiController {
       diff = Math.round(diff * 1000.0) / 1000.0;
       response += "<br><br>--- Open buy back ---";
       response +=
-              "<br>Amount: " + kahului.getOpenBuyBackAmt() + " BTC @ $" + kahului.getOpenBuyBackPrice();
-      response +=
-              "<br>Difference: $"
-                      + diff
-                      + " ("
-                      + kahului.getOpenBuyBackPercentage()
-                      + "%)";
+          "<br>Amount: " + kahului.getOpenBuyBackAmt() + " BTC @ $" + kahului.getOpenBuyBackPrice();
+      response += "<br>Difference: $" + diff + " (" + kahului.getOpenBuyBackPercentage() + "%)";
     }
     response += "<br><br>--- Links ---";
-    response += "<br><a href=\"https://github.com/pl42/kahului\" style=\"color:#F7931A\">Source Code</a>";
-    response += "<br><a href=\"https://twitter.com/WestworldKahului\" style=\"color:#F7931A\">Kahului's Twitter</a>";
-    response += "<br><a href=\"https://www.peggy42.cn/full.php\" style=\"color:#F7931A\">Kahului's full log</a>";
+    response +=
+        "<br><a href=\"https://github.com/pl42/kahului\" style=\"color:#F7931A\">Source Code</a>";
+    response +=
+        "<br><a href=\"https://twitter.com/WestworldKahului\" style=\"color:#F7931A\">Kahului's Twitter</a>";
+    response +=
+        "<br><a href=\"https://www.peggy42.cn/full.php\" style=\"color:#F7931A\">Kahului's full log</a>";
     response += "<br><br>--- Donate ---<br>";
     response +=
-            "<a href=\"https://www.blockchain.com/btc/address/"
-                    + "14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj\" style=\"color:#F7931A\">14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj</a>";
+        "<a href=\"https://www.blockchain.com/btc/address/"
+            + "14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj\" style=\"color:#F7931A\">14Xqn75eLQVZEgjFgrQzF8C2PxNDf894yj</a>";
     return new ResponseEntity<>(
-            "<html>\n"
-                    + "<head>\n"
-                    + "<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"https://www.peggy42.cn/apple-touch-icon.png\">\n"
-                    + "<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"https://www.peggy42.cn/favicon-32x32.png\">\n"
-                    + "<link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"https://www.peggy42.cn/favicon-16x16.png\">\n"
-                    + "<link rel=\"manifest\" href=\"https://www.peggy42.cn/site.webmanifest\">\n"
-                    + "<link rel=\"mask-icon\" href=\"https://www.peggy42.cn/safari-pinned-tab.svg\" color=\"#5bbad5\">\n"
-                    + "<meta name=\"msapplication-TileColor\" content=\"#da532c\">\n"
-                    + "<meta name=\"theme-color\" content=\"#ffffff\">\n"
-                    + "</head>\n"
-                    + "<title>Kahului</title>\n"
-                    + "<body bgcolor=\"#000000\">\n"
-                    + "<font face=\"Courier\" size=\"3\" color=\"#F7931A\">\n"
-                    + response
-                    + "</font> \n"
-                    + "</body>\n"
-                    + "</html> ",
-            HttpStatus.OK);
+        "<html>\n"
+            + "<head>\n"
+            + "<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"https://www.peggy42.cn/apple-touch-icon.png\">\n"
+            + "<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"https://www.peggy42.cn/favicon-32x32.png\">\n"
+            + "<link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"https://www.peggy42.cn/favicon-16x16.png\">\n"
+            + "<link rel=\"manifest\" href=\"https://www.peggy42.cn/site.webmanifest\">\n"
+            + "<link rel=\"mask-icon\" href=\"https://www.peggy42.cn/safari-pinned-tab.svg\" color=\"#5bbad5\">\n"
+            + "<meta name=\"msapplication-TileColor\" content=\"#da532c\">\n"
+            + "<meta name=\"theme-color\" content=\"#ffffff\">\n"
+            + "<meta http-equiv=\"refresh\" content=\"30\" />"
+            + "</head>\n"
+            + "<title>Kahului</title>\n"
+            + "<body bgcolor=\"#000000\">\n"
+            + "<font face=\"Courier\" size=\"3\" color=\"#F7931A\">\n"
+            + response
+            + "</font> \n"
+            + "</body>\n"
+            + "</html> ",
+        HttpStatus.OK);
   }
 
   @GetMapping(path = PATH_OPEN_ORDERS)

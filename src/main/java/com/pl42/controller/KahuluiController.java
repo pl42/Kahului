@@ -64,14 +64,15 @@ public class KahuluiController {
     if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###";
     response += "<br>--- Status report ---";
     response += "<br>Status: " + kahului.getCurrentStateString();
+    response += "<br>Investment: " + kahului.getInitialInvestment() + " BTC";
+    response += "<br>Portfolio  ≈ " + kahului.getCurrentBalance() + " BTC";
+    response += kahului.getBalances();
     response += "<br>Profit: " + kahului.getCurrentProfit() + "%";
-    response += "<br>Portfolio value: " + kahului.getCurrentBalance() + " BTC";
-    response += "<br>Initial investment: " + kahului.getInitialInvestment() + " BTC";
-    response += "<br>Sell confidence: " + kahului.getCurrentSellConfidence() + "%";
-    response += "<br><br>--- Prices ---";
+    response += "<br><br>--- Market ---";
     response += "<br>BTC Price: $" + kahului.getCurrentPrice();
     response += "<br>Target: $" + kahului.getCurrentTargetPrice();
     response += "<br>Buy back: $" + kahului.getCurrentBuyBackPrice();
+    response += "<br>Sell confidence: " + kahului.getCurrentSellConfidence() + "%";
     if (!kahului.currentState) {
       Double diff = kahului.getCurrentPrice() - kahului.getOpenBuyBackPrice();
       diff = Math.round(diff * 1000.0) / 1000.0;
@@ -104,7 +105,7 @@ public class KahuluiController {
             + "<link rel=\"mask-icon\" href=\"https://www.peggy42.cn/safari-pinned-tab.svg\" color=\"#5bbad5\">\n"
             + "<meta name=\"msapplication-TileColor\" content=\"#da532c\">\n"
             + "<meta name=\"theme-color\" content=\"#ffffff\">\n"
-            + "<meta http-equiv=\"refresh\" content=\"30\" />"
+            + "<meta http-equiv=\"refresh\" content=\"25\" />"
             + "</head>\n"
             + "<title>Kahului</title>\n"
             + "<body bgcolor=\"#000000\">\n"

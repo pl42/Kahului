@@ -60,7 +60,15 @@ public class KahuluiController {
   @GetMapping(path = PATH_STATUS)
   public ResponseEntity getState() {
     logger.trace(PATH_STATUS + RESPONSE_SUFFIX);
-    String response = "=====  >>>>>  KAHULUI (v" + kahului.getVersion() + ") <<<<<  =====<br>";
+    String response =
+        "██╗&nbsp;&nbsp;&nbsp;&nbsp;██╗██╗&nbsp;&nbsp;&nbsp;██╗&nbsp;█████╗&nbsp;████████╗████████╗\n"
+            + "<br>██║&nbsp;&nbsp;&nbsp;&nbsp;██║╚██╗&nbsp;██╔╝██╔══██╗╚══██╔══╝╚══██╔══╝\n"
+            + "<br>██║&nbsp;█╗&nbsp;██║&nbsp;╚████╔╝&nbsp;███████║&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;\n"
+            + "<br>██║███╗██║&nbsp;&nbsp;╚██╔╝&nbsp;&nbsp;██╔══██║&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;\n"
+            + "<br>╚███╔███╔╝&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;\n"
+            + "<br>&nbsp;╚══╝╚══╝&nbsp;&nbsp;&nbsp;&nbsp;╚═╝&nbsp;&nbsp;&nbsp;╚═╝&nbsp;&nbsp;╚═╝&nbsp;&nbsp;&nbsp;╚═╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╚═╝&nbsp;(v"
+            + kahului.getVersion()
+            + ")";
     if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###";
     response += "<br>--- Status report ---";
     response += "<br>Status: " + kahului.getCurrentStateString();
@@ -85,9 +93,9 @@ public class KahuluiController {
     response +=
         "<br><a href=\"https://github.com/pl42/kahului\" style=\"color:#F7931A\">Source Code</a>";
     response +=
-        "<br><a href=\"https://twitter.com/WestworldKahului\" style=\"color:#F7931A\">Kahului's Twitter</a>";
+        "<br><a href=\"https://twitter.com/WestworldKahului\" style=\"color:#F7931A\">Twitter</a>";
     response +=
-        "<br><a href=\"https://www.peggy42.cn/full.php\" style=\"color:#F7931A\">Kahului's full log</a>";
+        "<br><a href=\"https://www.peggy42.cn/full.php\" style=\"color:#F7931A\">Full log</a>";
     response += "<br><br>--- Donate ---";
     response +=
         "<br>Personal: <a href=\"https://www.blockchain.com/btc/address/"

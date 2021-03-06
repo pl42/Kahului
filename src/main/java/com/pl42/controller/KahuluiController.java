@@ -68,7 +68,7 @@ public class KahuluiController {
             + "<br>╚███╔███╔╝&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;\n"
             + "<br>&nbsp;╚══╝╚══╝&nbsp;&nbsp;&nbsp;&nbsp;╚═╝&nbsp;&nbsp;&nbsp;╚═╝&nbsp;&nbsp;╚═╝&nbsp;&nbsp;&nbsp;╚═╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╚═╝&nbsp;(v"
             + kahului.getVersion()
-            + ")";
+            + ")<br>";
     if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###";
     response += "<br>--- Status report ---";
     response += "<br>Status: " + kahului.getCurrentStateString();

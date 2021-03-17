@@ -59,6 +59,13 @@ public class KahuluiController {
 
   @GetMapping(path = PATH_STATUS)
   public ResponseEntity getState() {
+    Double currentPrice = kahului.getCurrentPrice();
+    Double initialInvestment = kahului.getInitialInvestment();
+    Double currentBalance = Double.valueOf(kahului.getCurrentBalance());
+    Double balanceDiff = currentBalance - initialInvestment;
+    Double balanceDiffUSD = balanceDiff * currentPrice;
+    balanceDiff = Math.round(balanceDiff * 10000000.0) / 10000000.0;
+    balanceDiffUSD = Math.round(balanceDiffUSD * 100.0) / 100.0;
     logger.trace(PATH_STATUS + RESPONSE_SUFFIX);
     String response =
         "`Mb(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)d'<br>"
@@ -72,27 +79,43 @@ public class KahuluiController {
             + "&nbsp;&nbsp;&nbsp;&nbsp;`MM'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`MM'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YMP&nbsp;&nbsp;&nbsp;&nbsp;MM.&nbsp;&nbsp;,MM&nbsp;YM.&nbsp;&nbsp;,&nbsp;YM.&nbsp;&nbsp;,<br>"
             + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`YMMM9'Yb.YMMM9&nbsp;&nbsp;YMMM9<br>"
             + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d'<br>"
-            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8),P&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(v"+ kahului.getVersion()+ ")<br>"
+            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8),P&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(v"
+            + kahului.getVersion()
+            + ")<br>"
             + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YMM<br>";
     if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###";
     response += "<br>--- Status report ---";
     response += "<br>Status: " + kahului.getCurrentStateString();
-    response += "<br>Investment: " + kahului.getInitialInvestment() + " BTC";
-    response += "<br>Portfolio  ≈ " + kahului.getCurrentBalance() + " BTC";
+    response += "<br>Investment: " + initialInvestment + " BTC";
+    response += "<br>Portfolio  ≈ " + currentBalance + " BTC";
     response += kahului.getBalances();
-    response += "<br>Profit: " + kahului.getCurrentProfit() + "%";
+    response +=
+        "<br>Profit: "
+            + kahului.getCurrentProfit()
+            + "% ("
+            + String.format("%.7f", balanceDiff)
+            + " BTC | $"
+            + String.format("%.2f", balanceDiffUSD)
+            + ")";
     response += "<br><br>--- Market ---";
-    response += "<br>BTC Price: $" + kahului.getCurrentPrice();
-    response += "<br>Target: $" + kahului.getCurrentTargetPrice();
-    response += "<br>Buy back: $" + kahului.getCurrentBuyBackPrice();
+    response += "<br>BTC Price: $" + String.format("%.2f", currentPrice);
+    response += "<br>Target: $" + String.format("%.2f", kahului.getCurrentTargetPrice());
+    response += "<br>Buy back: $" + String.format("%.2f", kahului.getCurrentBuyBackPrice());
     response += "<br>Sell confidence: " + kahului.getCurrentSellConfidence() + "%";
     if (!kahului.currentState) {
       Double diff = kahului.getCurrentPrice() - kahului.getOpenBuyBackPrice();
-      diff = Math.round(diff * 1000.0) / 1000.0;
       response += "<br><br>--- Open buy back ---";
       response +=
-          "<br>Amount: " + kahului.getOpenBuyBackAmt() + " BTC @ $" + kahului.getOpenBuyBackPrice();
-      response += "<br>Difference: $" + diff + " (" + kahului.getOpenBuyBackPercentage() + "%)";
+          "<br>Amount: "
+              + kahului.getOpenBuyBackAmt()
+              + " BTC @ $"
+              + String.format("%.2f", kahului.getOpenBuyBackPrice());
+      response +=
+          "<br>Difference: $"
+              + String.format("%.2f", diff)
+              + " ("
+              + kahului.getOpenBuyBackPercentage()
+              + "%)";
     }
     response += "<br><br>--- Links ---";
     response +=

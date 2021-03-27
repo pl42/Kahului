@@ -62,6 +62,7 @@ public class KahuluiController {
     Double currentPrice = kahului.getCurrentPrice();
     Double initialInvestment = kahului.getInitialInvestment();
     Double currentBalance = Double.valueOf(kahului.getCurrentBalance());
+    Double portfolioValue = currentBalance * currentPrice;
     Double balanceDiff = currentBalance - initialInvestment;
     Double balanceDiffUSD = balanceDiff * currentPrice;
     balanceDiff = Math.round(balanceDiff * 100000000.0) / 100000000.0;
@@ -87,7 +88,7 @@ public class KahuluiController {
     response += "<br>--- Status report ---";
     response += "<br>Status: " + kahului.getCurrentStateString();
     response += "<br>Investment: " + initialInvestment + " BTC";
-    response += "<br>Portfolio  ≈ " + currentBalance + " BTC";
+    response += "<br>Portfolio  ≈ " + currentBalance + " BTC ($" + String.format("%.2f",portfolioValue) + ")";
     response += kahului.getBalances();
     response +=
         "<br>Profit: "

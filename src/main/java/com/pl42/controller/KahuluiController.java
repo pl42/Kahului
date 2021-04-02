@@ -98,6 +98,7 @@ public class KahuluiController {
             + " BTC ≈ $"
             + String.format("%.2f", balanceDiffUSD)
             + ")";
+    if (!kahului.isEXECUTE_TWEETS()) { response += "<br>Tweeting: DISABLED"; }
     response += "<br><br>--- Market ---";
     response += "<br>BTC Price: $" + String.format("%.2f", currentPrice);
     response += "<br>Target: $" + String.format("%.2f", kahului.getCurrentTargetPrice());

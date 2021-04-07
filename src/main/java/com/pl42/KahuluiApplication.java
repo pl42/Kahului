@@ -10,7 +10,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class KahuluiApplication {
   private static final Logger logger = Logger.getLogger(KahuluiApplication.class);
-  private static final String VERSION = "6.8.3";
 
   public static void main(String[] args) {
     ConfigurableApplicationContext context = SpringApplication.run(KahuluiApplication.class, args);
@@ -30,12 +29,8 @@ public class KahuluiApplication {
       logger.error("Incorrect number of arguments given!");
       System.exit(-1);
     }
-    logger.info("Starting KAHULUI (v" + VERSION + ") ...");
+    logger.info("Starting KAHULUI...");
     runKahului(dolores);
-  }
-
-  public static String getVersion() {
-    return VERSION;
   }
 
   private static void runKahului(Kahului dolores) {

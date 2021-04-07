@@ -15,12 +15,17 @@ import com.pl42.kahului.model.data.MindData;
 import com.pl42.kahului.model.data.PredictionEngine;
 import com.pl42.kahului.utils.CalcUtils;
 import org.apache.log4j.Logger;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.springframework.stereotype.Service;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +47,7 @@ public class Kahului {
   private static final String[] tickers = {BTCUSDT_TICKER};
   public boolean currentState = true;
   private boolean EXECUTE_TWEETS = false;
-  private String VERSION = KahuluiApplication.getVersion();
+  private String VERSION = "";
   private Double lastTargetPrice = 1000000.0;
   private Double lastBuyBackPrice = 0.0;
   private Double openBuyBackPrice = 0.0;
@@ -54,6 +59,16 @@ public class Kahului {
   private String consumerSecret;
   private String accessToken;
   private String accessTokenSecret;
+
+  public Kahului() {
+    try {
+      MavenXpp3Reader reader = new MavenXpp3Reader();
+      Model model = reader.read(new FileReader("pom.xml"));
+      VERSION = model.getVersion();
+    } catch (IOException | XmlPullParserException e) {
+      e.printStackTrace();
+    }
+  }
 
   /**
    * Resets Kahului's memory. This is necessary to do or memory leaks will be possible

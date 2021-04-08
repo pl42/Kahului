@@ -60,7 +60,18 @@ public class Kahului {
   private String accessToken;
   private String accessTokenSecret;
 
-  public Kahului() {
+  /**
+   * Resets Kahului's memory. This is necessary to do or memory leaks will be possible
+   */
+  public void reset() {
+    this.mindData = new MindData();
+    this.predictionEngine = new PredictionEngine();
+  }
+
+  /**
+   * Sets the version by pulling from pom.xml
+   */
+  public void setVersion() {
     try {
       MavenXpp3Reader reader = new MavenXpp3Reader();
       Model model = reader.read(new FileReader("pom.xml"));
@@ -68,14 +79,6 @@ public class Kahului {
     } catch (IOException | XmlPullParserException e) {
       e.printStackTrace();
     }
-  }
-
-  /**
-   * Resets Kahului's memory. This is necessary to do or memory leaks will be possible
-   */
-  public void reset() {
-    this.mindData = new MindData();
-    this.predictionEngine = new PredictionEngine();
   }
 
   /**

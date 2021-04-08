@@ -14,6 +14,7 @@ public class KahuluiApplication {
   public static void main(String[] args) {
     ConfigurableApplicationContext context = SpringApplication.run(KahuluiApplication.class, args);
     Kahului dolores = context.getBean(Kahului.class);
+    dolores.setVersion();
     if (args.length < 2) {
       logger.error("Too few arguments given!");
       System.exit(-1);

@@ -10,11 +10,10 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class KahuluiApplication {
   private static final Logger logger = Logger.getLogger(KahuluiApplication.class);
-
   public static void main(String[] args) {
     ConfigurableApplicationContext context = SpringApplication.run(KahuluiApplication.class, args);
     Kahului dolores = context.getBean(Kahului.class);
-    dolores.setVersion();
+
     if (args.length < 2) {
       logger.error("Too few arguments given!");
       System.exit(-1);
@@ -35,6 +34,7 @@ public class KahuluiApplication {
   }
 
   private static void runKahului(Kahului dolores) {
+    dolores.setVersion();
     for (; ; ) {
       dolores.gatherMindData();
       dolores.predictAndTrade();

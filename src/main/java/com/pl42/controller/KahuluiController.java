@@ -1,7 +1,6 @@
 package com.pl42.controller;
 
 import com.google.common.hash.Hashing;
-import com.google.gson.Gson;
 import com.pl42.kahului.mind.Kahului;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

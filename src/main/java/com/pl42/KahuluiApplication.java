@@ -10,6 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class KahuluiApplication {
   private static final Logger logger = Logger.getLogger(KahuluiApplication.class);
+
   public static void main(String[] args) {
     ConfigurableApplicationContext context = SpringApplication.run(KahuluiApplication.class, args);
     Kahului dolores = context.getBean(Kahului.class);
@@ -34,7 +35,6 @@ public class KahuluiApplication {
   }
 
   private static void runKahului(Kahului dolores) {
-    dolores.setVersion();
     for (; ; ) {
       dolores.gatherMindData();
       dolores.predictAndTrade();

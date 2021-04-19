@@ -79,10 +79,8 @@ public class KahuluiController {
             + "....`MM'.....`MM'........YMP....MM...,MM.YM...,.YM...,<br>"
             + ".....YP.......YP..........M.....`YMMM9'Yb.YMMM9..YMMM9<br>"
             + ".........................d'...........................<br>"
-            + ".....................(8),P......(v"
-            + kahului.getVersion()
-            + ")..............<br>"
-            + "......................YMM.............................<br>";
+            + ".....................(8),P............................<br>"
+            + "......................YMM....................." + kahului.getVersion() + "<br>";
 
     if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###";
     response += "<br>--- Status report ---";

@@ -80,7 +80,7 @@ public class KahuluiController {
             + ".....YP.......YP..........M.....`YMMM9'Yb.YMMM9..YMMM9<br>"
             + ".........................d'...........................<br>"
             + ".....................C3P,O............................<br>"
-            + "......................YMM.....................(v" + kahului.getVersion() + ")<br>";
+            + "......................YMM....................v" + kahului.getVersion() + "...<br>";
 
     if (Kahului.DEVELOPMENT_MODE) response += "<br>### DEVELOPMENT MODE ###";
     response += "<br>--- Status report ---";

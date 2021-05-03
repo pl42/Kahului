@@ -58,6 +58,7 @@ public class KahuluiController {
 
   @GetMapping(path = PATH_STATUS)
   public ResponseEntity getState() {
+    logger.trace("*** ENTERING getState() ...");
     Double currentPrice = kahului.getCurrentPrice();
     Double initialInvestment = kahului.getInitialInvestment();
     Double currentBalance = Double.valueOf(kahului.getCurrentBalance());
@@ -142,6 +143,7 @@ public class KahuluiController {
     response +=
         "<br>Kahului: <a href=\"https://www.blockchain.com/btc/address/"
             + "1BWu4LtW1swREcDWffFHZSuK3VTT1iWuba\" style=\"color:#F7931A\">1BW...uba</a>";
+    logger.trace("*** EXITING getState() ...");
     return new ResponseEntity<>(
         "<html>"
             + "<head>"

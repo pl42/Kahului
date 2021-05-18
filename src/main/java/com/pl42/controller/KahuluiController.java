@@ -30,7 +30,7 @@ public class KahuluiController {
   @Autowired
   public KahuluiController(Kahului kahului) {
     this.kahului = kahului;
-    queue = EvictingQueue.create(10);
+    queue = EvictingQueue.create(100);
   }
 
   @GetMapping(path = PATH_BALANCE)

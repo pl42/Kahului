@@ -25,12 +25,11 @@ public class KahuluiController {
   private static final String PATH_ORDER_HISTORY = "/orders";
   private static final String RESPONSE_SUFFIX = " endpoint hit";
   private final Kahului kahului;
-  private Queue<Double> queue;
+  private Queue<Double> queue = EvictingQueue.create(100);
 
   @Autowired
   public KahuluiController(Kahului kahului) {
     this.kahului = kahului;
-    queue = EvictingQueue.create(1000);
   }
 
   @GetMapping(path = PATH_BALANCE)
@@ -62,13 +61,13 @@ public class KahuluiController {
 
   @GetMapping(path = PATH_STATUS)
   public ResponseEntity getState() {
-    Double startTime = (double) System.nanoTime();
+    double startTime = (double) System.nanoTime();
     Double currentPrice = kahului.getCurrentPrice();
     Double initialInvestment = kahului.getInitialInvestment();
     Double currentBalance = Double.valueOf(kahului.getCurrentBalance());
     Double portfolioValue = currentBalance * currentPrice;
-    Double balanceDiff = currentBalance - initialInvestment;
-    Double balanceDiffUSD = balanceDiff * currentPrice;
+    double balanceDiff = currentBalance - initialInvestment;
+    double balanceDiffUSD = balanceDiff * currentPrice;
     balanceDiff = Math.round(balanceDiff * 100000000.0) / 100000000.0;
     balanceDiffUSD = Math.round(balanceDiffUSD * 100.0) / 100.0;
     String response =
@@ -214,7 +213,7 @@ public class KahuluiController {
     if (queue.size() == 0) {
       return null;
     }
-    Double average = 0.0;
+    double average = 0.0;
     for (Double num : queue) {
       average += num / queue.size();
     }

@@ -135,8 +135,6 @@ public class KahuluiController {
     response +=
         "<br><a href=\"https://twitter.com/WestworldKahului\" style=\"color:#F7931A\">Twitter</a>";
     response +=
-        "<br><a href=\"https://www.peggy42.cn/full.php\" style=\"color:#F7931A\">Full log</a>";
-    response +=
         "<br><a href=\"http://www.peggy42.cn:17071/orders\" style=\"color:#F7931A\">Order History</a>";
     response += "<br><br>--- Donate ---";
     response +=

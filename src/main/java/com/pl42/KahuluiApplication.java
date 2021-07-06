@@ -30,7 +30,7 @@ public class KahuluiApplication {
       logger.error("Incorrect number of arguments given!");
       System.exit(-1);
     }
-    logger.info("Starting KAHULUI...");
+    logger.info("Starting Kahului_v" + dolores.getVersion() + "...");
     runKahului(dolores);
   }
 

@@ -29,7 +29,7 @@ import static com.binance.api.client.domain.account.NewOrder.*;
 
 @Service
 public class Kahului {
-  public static final boolean DEVELOPMENT_MODE = false;
+  public static final boolean DEVELOPMENT_MODE = true;
   private static final String BTCUSDT_TICKER = "BTCUSDT";
   private static final Logger logger = Logger.getLogger(Kahului.class);
   private static final CandlestickInterval[] intervalList = {

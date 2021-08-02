@@ -6,7 +6,6 @@ import com.pl42.kahului.mind.Kahului;
 import com.pl42.kahului.utils.CalcUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.devtools.restart.Restarter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,6 @@ public class KahuluiController {
   private static final String PATH_PROFIT = "/balance/profit";
   private static final String PATH_SHUTDOWN = "/seppuku";
   private static final String PATH_STATUS = "/status";
-  private static final String PATH_RESTART = "/restart";
   private static final String PATH_ORDER_HISTORY = "/orders";
   private static final String RESPONSE_SUFFIX = " endpoint hit";
   private final Kahului kahului;
@@ -33,19 +31,6 @@ public class KahuluiController {
   @Autowired
   public KahuluiController(Kahului kahului) {
     this.kahului = kahului;
-  }
-
-  @GetMapping(
-      path = PATH_RESTART,
-      params = {"pass"})
-  public void restart(@RequestParam("pass") String pass, HttpServletRequest request) {
-    logger.trace(PATH_RESTART + RESPONSE_SUFFIX);
-    if (confirmPassword(pass)) {
-      logger.info("Restart received from IP-address: " + request.getRemoteUser());
-      Restarter.getInstance().restart();
-    } else {
-      logger.info("Incorrect restart code from IP-address: " + request.getRemoteAddr());
-    }
   }
 
   @GetMapping(path = PATH_BALANCE)

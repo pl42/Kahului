@@ -95,8 +95,10 @@ public class KahuluiController {
     double startTime = (double) System.nanoTime();
     Double currentPrice = kahului.getCurrentPrice();
     Double initialInvestment = kahului.getInitialInvestment();
+    Double initialUSD = kahului.getInitialInvestmentUSD();
     Double currentBalance = Double.valueOf(kahului.getCurrentBalance());
     Double portfolioValue = currentBalance * currentPrice;
+    Double USDProfit = portfolioValue - initialUSD;
     double balanceDiff = CalcUtils.roundTo(currentBalance - initialInvestment, 8);
     double balanceDiffUSD = CalcUtils.roundTo(balanceDiff * currentPrice, 2);
     StringBuilder response =
@@ -108,7 +110,7 @@ public class KahuluiController {
     }
     response.append("<br>--- Status report ---");
     response.append("<br>Status: ").append(kahului.getCurrentStateString());
-    response.append("<br>Investment: ").append(initialInvestment).append(" BTC");
+    //response.append("<br>Investment: ").append(initialInvestment).append(" BTC");
     response
         .append("<br>Portfolio  ≈ ")
         .append(currentBalance)
@@ -117,13 +119,17 @@ public class KahuluiController {
         .append(")");
     response.append(kahului.getBalances());
     response
-        .append("<br>Profit: ")
-        .append(kahului.getCurrentProfit())
-        .append("% (")
+        .append("<br>Profit(BTC): ")
         .append(String.format("%.8f", balanceDiff))
-        .append(" BTC ≈ $")
-        .append(String.format("%.2f", balanceDiffUSD))
-        .append(")");
+        .append(" BTC (")
+        .append(kahului.getCurrentProfit())
+        .append("%)");
+    response
+        .append("<br>Profit(USD): $")
+        .append(String.format("%.2f", USDProfit))
+        .append(" (")
+        .append(String.format("%.3f", (USDProfit / initialUSD * 100)))
+        .append("%)");
     if (!kahului.isEXECUTE_TWEETS()) {
       response.append("<br>Tweeting: DISABLED");
     }

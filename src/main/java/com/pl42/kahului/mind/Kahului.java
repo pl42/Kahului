@@ -55,6 +55,9 @@ public class Kahului {
   @Value("${initialInvestment}")
   private Double INITIAL_INVESTMENT;
 
+  @Value("${startingUSD}")
+  private Double INITIAL_INVESTMENT_USD;
+
   @Value("${versionValue}")
   private String VERSION;
 
@@ -109,6 +112,10 @@ public class Kahului {
    */
   public Double getInitialInvestment() {
     return INITIAL_INVESTMENT;
+  }
+
+  public Double getInitialInvestmentUSD() {
+    return INITIAL_INVESTMENT_USD;
   }
 
   /**

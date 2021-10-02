@@ -212,7 +212,7 @@ public class KahuluiController {
     PriceData priceData = new PriceData();
     priceData.setBtc(kahului.getCurrentPrice());
     priceData.setEth(kahului.getCurrentPrice("ETHUSDT"));
-    priceData.setDoge(kahului.getCurrentPrice("DOGE_USDT"));
+    priceData.setDoge(kahului.getCurrentPrice("DOGEUSDT"));
     priceData.setGold(1571.45);
     priceData.setSilver(18.09);
     priceData.setPlatinum(1005.0);
